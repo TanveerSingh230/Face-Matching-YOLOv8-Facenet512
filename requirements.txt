@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+opencv-python-headless
+requests
+ultralytics
+deepface==0.0.92
+jinja2
+python-multipart
