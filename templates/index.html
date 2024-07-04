@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Matching</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 600px; margin: auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px; }
+        h1 { text-align: center; color: #2C3E50; }
+        form { display: flex; flex-direction: column; }
+        input { margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 10px; background-color: #2980B9; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        button:hover { background-color: #3498DB; }
+        .result { margin-top: 20px; text-align: center; font-size: 18px; }
+        .processing { display: none; text-align: center; margin-top: 20px; color: #2980B9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Face Matching</h1>
+        <form id="compareForm">
+            <label for="url1">URL of First Image:</label>
+            <input type="text" id="url1" name="url1" required>
+            <label for="url2">URL of Second Image:</label>
+            <input type="text" id="url2" name="url2" required>
+            <button type="submit">Compare Faces</button>
+        </form>
+        <div class="processing" id="processing">Processing...</div>
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        document.getElementById('compareForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            document.getElementById('result').innerText = '';
+            document.getElementById('processing').style.display = 'block';
+
+            const formData = new FormData(event.target);
+
+            try {
+                const response = await fetch('/compare', {
+                    method: 'POST',
+                    body: new URLSearchParams(formData)
+                });
+                const data = await response.json();
+                document.getElementById('processing').style.display = 'none';
+                document.getElementById('result').innerText = data.result;
+            } catch (error) {
+                document.getElementById('processing').style.display = 'none';
+                document.getElementById('result').innerText = 'Error: An error occurred while processing your request';
+            }
+        });
+    </script>
+</body>
+</html>
