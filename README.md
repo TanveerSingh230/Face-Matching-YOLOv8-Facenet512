@@ -1,6 +1,8 @@
 # Face-Matching-YOLOv8-Facenet512
 This project is a web application that verifies if two faces match or not. Users can input two image URLs through an HTML interface, and the application processes the images to determine if the faces in the images match. The application is built using FastAPI and is deployed on a web server.
 
+https://github.com/TanveerSingh230/Face-Matching-YOLOv8-Facenet512/assets/108932947/0fff87d2-c4a0-4a4f-90f0-193baa312d5a
+
 ## Features
 
 - **Face Detection and Verification**: Utilizes YOLOv8 for face detection and DeepFace with FaceNet512 for face verification.
